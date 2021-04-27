@@ -1,27 +1,51 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-
-// class App extends Component {
-//     render() {
-//         return (
-//             <View>
-//                 <Text>hello ban tuyen</Text>
-//             </View>
-//         );
-//     }
-// }
+import React, {Component, useState, useEffect} from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import Navigation from './nav';
+import Generate from './generate';
 
 const App = () => {
-    return (
-        <View style={{marginTop: 50}}>
-          <View>
-            <Text>hello ban 1</Text>
-          </View>
-          <View>
-            <Text>hello ban 2</Text>
-          </View>
-        </View>
-    );
+  const [hello, setHello] = useState(true);
+  useEffect(() => {
+    // setTimeout(() => {
+    //   setHello(false);
+    // }, 2000);
+  }, []);
+
+  return (
+    <View style={styles.mainView}>
+      <Navigation nameNav={'tuyen'} />
+      <View style={styles.basicview}>
+        <Text style={styles.basicText}>Text for view 1</Text>
+      </View>
+      <View style={styles.basicview}>
+        <Text style={styles.basicText}>Text for view 2</Text>
+      </View>
+      {/*{hello ? <Text>Hello everybody</Text> : null}*/}
+      <View>
+        <Generate />
+      </View>
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    paddingTop: 50,
+    alignItems: 'flex-start', // center x axis
+    justifyContent: 'flex-start', // center y axis
+  },
+  basicview: {
+    backgroundColor: 'green',
+    width: '100%',
+    marginBottom: 5,
+  },
+  basicText: {
+    fontSize: 20,
+    color: '#ffffff',
+    textAlign: 'center',
+    padding: 20,
+  },
+});
 
 export default App;
